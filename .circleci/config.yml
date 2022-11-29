@@ -191,8 +191,9 @@ jobs:
       - destroy-environment
 
   configure-infrastructure:
-    docker: *ansible-image
+    docker: 
       # Docker image here that supports Ansible      
+      - image: amazon/aws-cli
     steps:
       - print_pipeline_id      
       # Checkout code from git
