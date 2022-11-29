@@ -194,8 +194,7 @@ jobs:
     docker: 
       # Docker image here that supports Ansible      
       - image: amazon/aws-cli
-    steps:
-      - print_pipeline_id      
+    steps:      
       # Checkout code from git
       - checkout
       # Add ssh keys with fingerprint
