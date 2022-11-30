@@ -235,6 +235,7 @@ jobs:
       # Docker image here that supports NodeJS
       - image: circleci/node:13.8.0
     steps:
+      - print_pipeline_id
       # Checkout code from git
       - checkout
       - run:
@@ -281,6 +282,7 @@ jobs:
       # Docker image here that supports AWS CLI
       - image: circleci/node:13.8.0
     steps:
+      - print_pipeline_id
       # Checkout code from git
       - checkout
       - attach_workspace:
