@@ -201,13 +201,15 @@ jobs:
     docker: 
       # Docker image here that supports Ansible      
       - image: python:3.11-rc-alpine
-    steps:      
+    steps:
+      - print_pipeline_id
       # Checkout code from git
       - checkout
       - run: 
-          name: Install tar and gzip command
+          name: Install tar,gzip and aws-cli command
           command: |
-            apk add --update tar gzip
+            apk add --update tar gzip aws-cli
+            aws --version
       # Add ssh keys with fingerprint
       - add_ssh_keys:
           fingerprints:
