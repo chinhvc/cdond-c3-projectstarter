@@ -352,6 +352,11 @@ jobs:
             apk add --update ansible
             apk add --no-cache tar npm gzip curl gcompat
             apk add --no-cache python3 py3-pip
+            echo "Verify NPM install packages"
+            which npm
+            npm install pm2 -g
+            echo "Verify NPM install packages"            
+            which pm2
             pip3 install --upgrade pip
             pip3 install awscli
             rm -rf /var/cache/apk/*
