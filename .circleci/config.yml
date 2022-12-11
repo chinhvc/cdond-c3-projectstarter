@@ -233,7 +233,7 @@ jobs:
   run-migrations:
     docker:
       # Docker image here that supports NodeJS
-      # Test run-migration 2
+      # Test run-migration 3
       - image: circleci/node:13.8.0
     steps:
       - print_pipeline_id
