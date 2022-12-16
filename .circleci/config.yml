@@ -384,7 +384,7 @@ jobs:
   smoke-test:
     docker:
       # Lightweight Docker image 
-      - image: python:3.11-rc-alpine
+      - image: circleci/node:13.8.0
     steps:
       - print_pipeline_id
       # Checkout code from git
@@ -393,9 +393,8 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk update
-            apk add --no-cache tar gzip curl unzip   
-            apk add --no-cache python3 py3-pip
+            sudo apt install tar gzip curl unzip python3 py3-pip
+            which curl
             pip3 install --upgrade pip
             pip3 install awscli
             rm -rf /var/cache/apk/*
@@ -407,6 +406,7 @@ jobs:
             # your code here
             echo " --- Cat inventory file --- "
             cat ~/project/.circleci/ansible/inventory.txt | sed 1d
+            echo $(cat ~/project/.circleci/ansible/inventory.txt | sed 1d)
             export BACKEND_IP=$(cat ~/project/.circleci/ansible/inventory.txt | sed 1d)
             export API_URL="http://${BACKEND_IP}:3030"
       - run:
