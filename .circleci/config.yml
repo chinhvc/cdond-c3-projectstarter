@@ -405,15 +405,16 @@ jobs:
           command: |
             # your code here
             echo " --- Cat inventory file --- "
-            cat ~/project/.circleci/ansible/inventory.txt | sed 1d
-            echo $(cat ~/project/.circleci/ansible/inventory.txt | sed 1d)
+            cat ~/project/.circleci/ansible/inventory.txt | sed 1d            
             export BACKEND_IP=$(cat ~/project/.circleci/ansible/inventory.txt | sed 1d)
-            export API_URL="http://${BACKEND_IP}:3030"            
+            echo ${BACKEND_IP}
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo ${API_URL}
       - run:
           name: Backend smoke test.
           command: |
             # your code here
-            echo "${API_URL}"            
+            echo ${API_URL}            
             # if curl "${API_URL}/api/status" | grep "ok"
             # then
             #     return 0
@@ -429,7 +430,7 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 # Change this to 0 after the job fails
-              return 1
+              return 0
             else
               return 1
             fi
